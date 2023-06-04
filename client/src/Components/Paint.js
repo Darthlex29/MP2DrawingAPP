@@ -91,11 +91,12 @@ function Paint({ width, height }) {
 
   return (
     <canvas
-      ref={canvasRef}
+      
       className="drawing"
       width={width}
       height={height}
       style={canvasStyle}
+      ref={canvasRef}
     />
   );
 }
