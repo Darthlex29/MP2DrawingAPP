@@ -1,0 +1,41 @@
+
+body{
+    text-align: center;
+    background-color: white;
+}
+
+.color-field1 {
+  background-color: red;
+}
+.color-field2 {
+  background-color: yellowgreen;
+}
+.color-field3 {
+  background-color: blue;
+}
+.color-field4 {
+  background-color: green;
+}
+.color-field5 {
+  background-color: purple;
+}
+.color-field6 {
+    background-color: black;
+  }
+
+.tools .color-field1 .color-field2 
+.color-field3 .color-field4 .color-field5
+.color-field6{
+    height: 40px;
+    width: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    cursor: pointer;
+}
+  
+.canvas-container{
+    display: 'flex';
+    justify-content: 'center';
+    align-items: 'center';
+    height: '100vh';
+}
