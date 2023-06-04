@@ -28,7 +28,7 @@ io.on("connection", (socket) => {
     });
   });
 
-  socket.on("drawLine", data => {
+  socket.on("drawLine", (data) => {
     line_history.push(data.line);
     io.emit("drawLine", data);
     console.log(data);

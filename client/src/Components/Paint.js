@@ -23,7 +23,9 @@ function Paint({ width, height }) {
       });
       mouse.move = false;
     }
-    mouse.pos_prev = { x: mouse.pos.x, y: mouse.pos.y };
+    mouse.pos_prev = { 
+      x: mouse.pos.x, 
+      y: mouse.pos.y };
     setTimeout(handleDrawing, 5);
   };
   handleDrawing();
@@ -31,6 +33,18 @@ function Paint({ width, height }) {
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
+
+    function computePointInCanvas(clientX, clientY) {
+      if (canvasRef.current) {
+        const boundingRect = canvasRef.current.getBoundingClientRect();
+        return {
+          x: clientX - boundingRect.left,
+          y: clientY - boundingRect.top,
+        };
+      } else {
+        return null;
+      }
+    }
 
     const handleMouseDown = (e) => {
       mouse.click = true;
@@ -42,8 +56,12 @@ function Paint({ width, height }) {
 
     const handleMouseMove = (e) => {
       mouse.move = true;
-      mouse.pos.x = e.clientX;
-      mouse.pos.y = e.clientY;
+      const point = computePointInCanvas(e.clientX, e.clientY)
+  /*     console.log(point)
+      console.log(point.x)
+      console.log(point.y) */
+      mouse.pos.x = point.x;
+      mouse.pos.y = point.y;
     };
 
     canvas.addEventListener("mousemove", handleMouseMove);
@@ -56,8 +74,8 @@ function Paint({ width, height }) {
       ctx.beginPath();
       ctx.lineWidth = 2;
       ctx.strokeStyle = mouse.color;
-      ctx.moveTo(line[0].x * width, line[0].y * height);
-      ctx.lineTo(line[1].x * width, line[1].y * height);
+      ctx.moveTo(line[0].x, line[0].y);
+      ctx.lineTo(line[1].x, line[1].y);
       ctx.stroke();
     });
 
